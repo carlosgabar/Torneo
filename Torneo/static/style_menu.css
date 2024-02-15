@@ -1,0 +1,65 @@
+body {
+    background-image: url("img/fondo.jpeg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.barra-nav .nav-link {
+
+  margin-right: 15px;
+  color:darkcyan;
+  font-size: 18px;
+
+}
+
+.cont-menu{
+  margin-top:-5px;
+  padding:10px;
+  background:aliceblue;
+  width: 300px;
+  height: 500px;
+  display: inline-block;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  
+ 
+}
+
+.cont-menu ul{
+
+  list-style: none;
+  text-decoration: none;
+  
+}
+
+.cont-menu .menu li a{
+
+  display: block;
+  padding:15px 5px;
+  color:darkcyan;
+  list-style: none;
+  text-decoration: none;
+
+}
+
+.cont-menu .menu li a:hover{
+  color:white
+
+}
+
+.cont-menu .menu .icono{
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.despliegue{
+
+  text-align: center;
+  color:white;
+  
+}
+
+.nav-item:last-child a {
+  float: right;
+  margin-left: auto;
+}

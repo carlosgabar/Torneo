@@ -17,6 +17,11 @@ def login():
 
     return render_template('login_admin.html')
 
+@app.route('/stats')
+def stats():
+
+    return render_template('stats.html')
+
 if __name__=='__main__':
 
     app.run(debug=True)

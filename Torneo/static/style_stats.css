@@ -1,0 +1,32 @@
+body {
+    background-image: url("img/fondo_imagen.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.stats h1{
+
+    text-align: center;
+
+}
+
+.stats table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.stats th, .stats td {
+    border: 1px solid rgb(9, 9, 9);
+    padding: 3px;
+    text-align: left;
+    background-color: white;
+}
+
+.stats th {
+    background-color: #f2f2f2;
+}
+
+.stats h1 {
+    color: white;
+}

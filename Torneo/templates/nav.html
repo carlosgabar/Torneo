@@ -9,6 +9,22 @@
   <link rel="stylesheet" href="/static/style_stats.css">
   <script src="https://kit.fontawesome.com/178b763164.js" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+  <style>
+    .formularios {
+      display: none;
+    }
+  </style>
+  <script>
+  function mostrarFormulario(formulario) {
+    var formularios = document.getElementsByClassName("formularios");
+    for (var i = 0; i < formularios.length; i++) {
+      formularios[i].style.display = "none";
+    }
+    
+    document.getElementById(formulario).style.display = "block";
+  }
+  </script>
 </head>
 <body>
 

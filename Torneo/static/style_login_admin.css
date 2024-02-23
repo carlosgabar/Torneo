@@ -6,7 +6,7 @@ body {
     background-size: cover;
 }
 .login-container {
-    max-width: 500px;
+    width: 600px;
     margin: 80px auto;
     padding: 20px;
     background-color: #ffffff;

@@ -13,7 +13,7 @@ body {
 
 .stats table {
     border-collapse: collapse;
-    width: 100%;
+    width: 300%;
 }
 
 .stats th, .stats td {

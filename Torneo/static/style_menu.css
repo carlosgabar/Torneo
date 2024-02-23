@@ -18,7 +18,7 @@ body {
   padding:10px;
   background:aliceblue;
   width: 300px;
-  height: 500px;
+  height: 450px;
   display: inline-block;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   
@@ -56,10 +56,54 @@ body {
 
   text-align: center;
   color:white;
+  font-size: 30px;
+  margin-bottom: 10px;
   
 }
 
 .nav-item:last-child a {
   float: right;
   margin-left: auto;
+}
+
+.formularios {
+  display: none;
+  flex-grow: 1; /* Permite que el formulario crezca para ocupar el espacio restante */
+}
+
+/* Utilizar flexbox para alinear los elementos */
+.container {
+  display: flex;
+
+
+
+}
+
+.agrupar{
+
+  display:block;
+  margin-right: 150px;
+}
+
+.formularios h2{
+
+  color:darkcyan;
+  font-size: 30px;
+  margin-bottom: 10px;
+  text-align: center;
+
+}
+
+.formularios{
+
+
+  margin-top:40px;
+  padding:10px;
+  background:aliceblue;
+  width: 400px;
+  height: 450px;
+  display: inline-block;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+
 }

@@ -1,10 +1,11 @@
 {% extends 'nav.html'  %}
 
-    {% block content %}
 
+    {% block content %}
+<div class="agrupar">
   <div class="despliegue">
 
-    <h1>Opciones de Torneo</h1>
+    <h3>Opciones de Torneo</h3>
 
   </div>
 
@@ -13,7 +14,7 @@
     <ul class="menu">
       <li ><a href="#"><i class="icono fa-solid fa-futbol"></i>Crear Torneo</a>
         <ul>
-          <li><a href="#">Crear</a>
+          <li><a href="#" onclick="mostrarFormulario('crear')">Crear Torneo</a></li>
         </ul>
       </li>
       <li ><a href="#"><i class="icono fa-solid fa-eye"></i>Visualizar Torneo</a>
@@ -24,10 +25,59 @@
       </li>
       <li ><a href="#"><i class="icono fa-solid fa-pen-to-square"></i>Editar Torneo</a>      
         <ul>
-          <li><a href="#">Equipos</a>
+          <li><a href="#" onclick="mostrarFormulario('editar')">Editar Torneo</a></li>
         </ul>
       </li>
     </ul>
   </div>
+</div>
+<div class="container">
 
+<div id="crear" class="formularios">
+    
+    <h2>Formulario para Crear Torneo</h2>
+    
+<form id="equipoForm" action="/crear" method="post">
+  <label for="nombreTorneo">Nombre del Torneo</label>
+  <input type="text" id="nombreTorneo" name="nombreTorneo" required>
+
+  <label for="numEquipos">Número de Equipos:</label>
+  <input type="number" id="numEquipos" name="numEquipos" min="1" required>
+  <button type="button" onclick="generarCampos()">Generar Campos</button>
+
+  <div id="equiposContainer"></div>
+
+  <button type="submit">Enviar</button>
+</form>
+
+<script>
+function generarCampos() {
+  var numEquipos = document.getElementById("numEquipos").value;
+  var container = document.getElementById("equiposContainer");
+  container.innerHTML = ""; // Limpiar el contenedor antes de generar los campos
+
+  for (var i = 1; i <= numEquipos; i++) {
+      var label = document.createElement("label");
+      label.textContent = "Nombre del Equipo " + i + ":";
+      
+      var input = document.createElement("input");
+      input.type = "text";
+      input.name = "equipo" + i;
+
+      container.appendChild(label);
+      container.appendChild(input);
+      container.appendChild(document.createElement("br")); // Salto de línea
+  }
+}
+</script>
+
+</div>
+
+<div id="editar" class="formularios">
+
+  <h2>Formulario para Editar Torneo</h2>
+
+</div>
+
+</div>
     {% endblock %}

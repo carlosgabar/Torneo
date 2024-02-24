@@ -104,6 +104,22 @@ body {
   height: 450px;
   display: inline-block;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  overflow-y:scroll;
 
 
+}
+
+.ordenar label{
+
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color:darkcyan;
+  display:block;
+
+
+}
+
+.ordenar .boton{
+
+  margin-top:20px;
+  margin-left: 275px;
 }

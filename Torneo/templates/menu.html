@@ -35,21 +35,25 @@
 
 <div id="crear" class="formularios">
     
+  <div class="ordenar">
     <h2>Formulario para Crear Torneo</h2>
-    
-<form id="equipoForm" action="/crear" method="post">
-  <label for="nombreTorneo">Nombre del Torneo</label>
-  <input type="text" id="nombreTorneo" name="nombreTorneo" required>
 
-  <label for="numEquipos">Número de Equipos:</label>
-  <input type="number" id="numEquipos" name="numEquipos" min="1" required>
-  <button type="button" onclick="generarCampos()">Generar Campos</button>
+  <form id="equipoForm" action="/crear" method="post">
+    <label for="nombreTorneo">Nombre del Torneo</label>
+    <input type="text" id="nombreTorneo" name="nombreTorneo" required>
 
-  <div id="equiposContainer"></div>
+    <label for="numEquipos">Número de Equipos:</label>
+    <input type="number" id="numEquipos" name="numEquipos" min="1" required>
+    <button type="button" onclick="generarCampos()">Generar Campos</button>
 
-  <button type="submit">Enviar</button>
+    <div class="ordenargenerados">
+    <div id="equiposContainer"></div>
+    </div>
+
+    <button class="boton" type="submit">Enviar</button>
+
 </form>
-
+</div>
 <script>
 function generarCampos() {
   var numEquipos = document.getElementById("numEquipos").value;
@@ -66,7 +70,7 @@ function generarCampos() {
 
       container.appendChild(label);
       container.appendChild(input);
-      container.appendChild(document.createElement("br")); // Salto de línea
+      //container.appendChild(document.createElement("br")); // Salto de línea
   }
 }
 </script>

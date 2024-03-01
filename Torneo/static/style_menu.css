@@ -123,3 +123,45 @@ body {
   margin-top:20px;
   margin-left: 275px;
 }
+
+.listado table{
+
+  border-collapse: collapse;
+  width: 50%;
+  margin:auto;
+  
+}
+
+.listado th, .listado td{
+
+  border: 1px solid rgb(9, 9, 9);
+  padding: 3px;
+  text-align: left;
+  background-color: white;
+
+}
+
+.editform{
+
+  margin-bottom: 15px;
+
+}
+
+.editform input{
+
+  
+  width:50px;
+
+}
+
+.editform .idtorneo{
+
+  margin-bottom: 10px;
+
+}
+
+.editform .idtorneo input{
+
+  margin-left: 5px;
+
+}

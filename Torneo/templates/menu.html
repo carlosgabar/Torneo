@@ -81,7 +81,59 @@ function generarCampos() {
 
   <h2>Formulario para Editar Torneo</h2>
 
+  <div class="editform">
+
+      <div class="idtorneo">
+    <form id="idtorneo" action="/idtorneo" method="post">
+
+      <label for="id_torneo">ID del torneo</label>
+      <input type="number" id="id_torneo" name="id_torneo"  required>
+
+      <button class="boton" type="submit">Enviar</button>
+  
+   </form>
+    </div>
+
+
+  <form id="editarform" action="/editar" method="post">
+
+    <label for="id_partido">ID del partido</label>
+    <input type="number" id="id_partido" name="id_partido"  required>
+  
+    <label for="goles_local">Goles Local</label>
+    <input type="number" id="goles_local" name="goles_local" required>
+  
+    <label for="goles_visitante">Goles visitante</label>
+    <input type="number" id="goles_visitante" name="goles_visitante" required>
+  
+    <button class="boton" type="submit">Enviar</button>
+  
+  </form>
+
+  </div>
+
+  <div class="listado">
+  <table>
+      <thead>
+          <tr>
+            <th>ID Partido</th>
+            <th>Equipo Local</th>
+            <th>Equipo Visitante</th>
+          </tr>
+      </thead>
+      <tbody>
+        {% for id,partido1,partido2 in partidos %}
+          <tr>
+            <td>{{id}}</td>
+            <td>{{partido1}}</td>
+            <td>{{partido2}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+
 </div>
 
 </div>
+
     {% endblock %}

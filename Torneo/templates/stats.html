@@ -9,7 +9,6 @@
     <thead>
         <tr>
           <th>Club</th>
-          
           <th>MP</th>
           <th>W</th>
           <th>D</th>
@@ -21,19 +20,20 @@
         </tr>
     </thead>
     <tbody>
+      {% for ID_equipo,ID_torneo,gfavor_equipo,gcontra_equipo,Puntos,victorias,derrotas,empates,
+        cantidadjugados,dif_goles,nombre_equipo in salida %}
         <tr>
-          <td>Liverpool</td>
-          
-          <td>16</td>
-          <td>6</td>
-          <td>14</td>
-          <td>4</td>
-          <td>55</td>
-          <td>23</td>
-          <td>32</td>
-          <td>54</td>
+          <td>{{nombre_equipo}}</td>
+          <td>{{cantidadjugados}}</td>
+          <td>{{victorias}}</td>
+          <td>{{derrotas}}</td>
+          <td>{{empates}}</td>
+          <td>{{gfavor_equipo}}</td>
+          <td>{{gcontra_equipo}}</td>
+          <td>{{dif_goles}}</td>
+          <td>{{Puntos}}</td>
         </tr>
-
+      {% endfor %}
     </tbody>
 </table>
 

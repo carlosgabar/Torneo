@@ -51,19 +51,40 @@ def login():
 
 @app.route('/stats')
 def stats():
-
+    nombres=[]
     try:
         connection=get_connection()
 
         with connection.cursor() as cursor:
-            cursor.execute("SELECT * FROM equipo ")
+
+            #cursor.execute("""SELECT * FROM torneo_equipo
+                             #GROUP BY "ID_torneo","ID_equipo" ORDER BY "Puntos" DESC """)
+        
+            #salida=cursor.fetchall()
+            #print(salida)
+
+            cursor.execute("""SELECT te.*, e_equipo."Nombre_equipo"
+                  FROM torneo_equipo te
+                  JOIN equipo e_equipo ON te."ID_equipo" = e_equipo."ID_equipo"
+                  GROUP BY te."ID_torneo", te."ID_equipo",e_equipo."Nombre_equipo"
+                  ORDER BY te."Puntos" DESC""")
+            
             salida=cursor.fetchall()
-            print(salida)
+            print("AQUI ",salida)
+
+            #salida_id = [lista[0] for lista in salida]
+
+            #for id_equipo in salida_id:
+                #cursor.execute("""SELECT "Nombre_equipo" FROM equipo WHERE "ID_equipo" = %s""" ,(id_equipo,))
+                #nombre=cursor.fetchone()
+                #nombres.append(nombre)
+
+            #print(nombres)
     
     except Exception as ex:
         raise Exception(ex)
 
-    return render_template('stats.html')
+    return render_template('stats.html',salida=salida)
 
 @app.route('/crear',methods=['POST'])
 def crear():
@@ -233,7 +254,7 @@ def editar():
             if goles_local > goles_visitante:
                 cursor.execute("""SELECT "ID_local" FROM partidos WHERE "ID_partido" = %s""" ,(id_partido,))
                 id_local=cursor.fetchone()
-                cursor.execute("""UPDATE artidos SET "ID_ganador" = %s WHERE "ID_partido" = %s""", (id_local, id_partido)) 
+                cursor.execute("""UPDATE partidos SET "ID_ganador" = %s WHERE "ID_partido" = %s""", (id_local, id_partido)) 
                 cursor.execute("""SELECT "Puntos" FROM torneo_equipo WHERE "ID_equipo" = %s AND "ID_torneo"=%s """ ,(id_local,id_torneo))
                 puntos = cursor.fetchone()
                 valor=puntos[0]

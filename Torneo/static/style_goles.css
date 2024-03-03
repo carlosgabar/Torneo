@@ -3,16 +3,18 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+
+
 }
 
 .stats h1{
 
-
     text-align: center;
-
+    
 }
 
 .stats table {
+     
     border-collapse: collapse;
     width: 300%;
 }

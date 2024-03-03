@@ -20,12 +20,14 @@
       <li ><a href="#"><i class="icono fa-solid fa-eye"></i>Visualizar Torneo</a>
         <ul>
           <li><a href="/stats">Tabla</a>
-          <li><a href="#">Estadisticas</a>
+          <li><a href="/mostrar_goles">Estadisticas</a>
         </ul>
       </li>
       <li ><a href="#"><i class="icono fa-solid fa-pen-to-square"></i>Editar Torneo</a>      
         <ul>
           <li><a href="#" onclick="mostrarFormulario('editar')">Editar Torneo</a></li>
+          <li><a href="#" onclick="mostrarFormulario('agregar')">Agregar jugadores</a></li>
+          <li><a href="#" onclick="mostrarFormulario('agregargoles')">Agregar Goles</a></li>
         </ul>
       </li>
     </ul>
@@ -43,7 +45,7 @@
     <input type="text" id="nombreTorneo" name="nombreTorneo" required>
 
     <label for="numEquipos">Número de Equipos:</label>
-    <input type="number" id="numEquipos" name="numEquipos" min="1" required>
+    <input type="number" id="numEquipos" name="numEquipos" min="4" max="16" required>
     <button type="button" onclick="generarCampos()">Generar Campos</button>
 
     <div class="ordenargenerados">
@@ -70,7 +72,7 @@ function generarCampos() {
 
       container.appendChild(label);
       container.appendChild(input);
-      //container.appendChild(document.createElement("br")); // Salto de línea
+
   }
 }
 </script>
@@ -133,6 +135,60 @@ function generarCampos() {
   </table>
 
 </div>
+
+</div>
+
+<div id="agregar" class="formularios">
+
+  <h2>Formulario para Agregar jugadores</h2>
+
+  <div class="jugadores">
+  <form id="idjugador" action="/idjugador" method="post">
+
+    <div class="arreglarid">
+    <label for="id_equipo">ID del Equipo</label>
+    <input type="number" id="id_equipo" name="id_equipo"  required>
+    </div>
+
+    <label for="nombre_jugador">Nombre del jugador</label>
+    <input type="text" id="nombre_jugador" name="nombre_jugador"  required>
+
+    
+    <div class="arreglarboton">
+    <button class="boton" type="submit">Enviar</button>
+   </div>
+ </form>
+
+  </div>
+
+</div>
+
+<div id="agregargoles" class="formularios">
+
+  <h2>Formulario para Agregar Goles</h2>
+
+  <div class="golesjugador">
+  <form id="golesjugador" action="/golesjugador" method="post">
+
+    <div class="arreglaridgoles">
+    <label for="id_equipo">ID Equipo</label>
+    <input type="number" id="id_equipo" name="id_equipo"  required>
+    </div>
+
+    <label for="id_jugador">ID Jugador</label>
+    <input type="number" id="id_jugador" name="id_jugador"  required>
+
+    <label for="id_torneo">ID Torneo</label>
+    <input type="number" id="id_torneo" name="id_torneo"  required>
+  
+    <label for="goles">Goles</label>
+    <input type="number" id="goles" name="goles"  required>
+   
+    <button class="boton" type="submit">Enviar</button>
+   </div>
+ </form>
+
+  </div>
 
 </div>
 

@@ -1,0 +1,29 @@
+{% extends 'nav.html'  %}
+
+{% block content %}
+<div class="stats">
+
+<h1>Tabla de Goles</h1>
+<table>
+    <thead>
+     
+        <tr>
+          <th>Jugador</th>
+          <th>Goles</th>
+          <th>Equipo</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for id_jugador,goles,nombre_equipo in salida%}
+        <tr>
+          <td>{{id_jugador}}</td>
+          <td>{{goles}}</td>
+          <td>{{nombre_equipo}}</td>
+        {% endfor %}
+        </tr>
+
+    </tbody>
+</table>
+
+</div>
+{% endblock %}

@@ -18,7 +18,7 @@ body {
   padding:10px;
   background:aliceblue;
   width: 300px;
-  height: 450px;
+  height: 520px;
   display: inline-block;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   
@@ -163,5 +163,34 @@ body {
 .editform .idtorneo input{
 
   margin-left: 5px;
+
+}
+
+
+.jugadores .arreglarid input{
+  
+  width:55px;
+  margin-bottom: 10px;
+
+}
+
+.jugadores .arreglarboton{
+  margin-top: 10px;
+  display: block;
+  margin-left:220px;
+
+}
+
+.golesjugador input{
+  
+  width:55px;
+  margin-bottom: 10px;
+
+}
+
+.golesjugador .arreglarbotongoles{
+  margin-top: 10px;
+ 
+  margin-left:220px;
 
 }

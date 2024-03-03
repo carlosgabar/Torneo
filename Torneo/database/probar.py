@@ -38,17 +38,6 @@ try:
     id_partido=5
 
     
-    cursor.execute("""SELECT "gfavor_equipo","gcontra_equipo" FROM torneo_equipo WHERE "ID_equipo" = %s
-                            AND "ID_torneo"=%s """ ,
-                           (3,1))
-            
-    golesl=cursor.fetchone()
-    goles_local_favor=golesl[0]
-
-    print(goles_local_favor)
-    print(golesl)
-
-
     cursor.execute("""UPDATE partidos SET "ID_ganador" = %s WHERE "ID_partido" = %s""", (2, id_partido)) 
     cursor.execute("""SELECT "Puntos" FROM equipo WHERE "ID_equipo" = %s""" ,(2,))
     rows = cursor.fetchone()

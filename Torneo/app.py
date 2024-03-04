@@ -200,6 +200,7 @@ def stats():
 def crear():
 
     n_equipos=request.form['numEquipos']
+    categoria=['nombrecategoria']
     nombre_torneo=request.form['nombreTorneo']
     equipos = [request.form['equipo' + str(i)] for i in range(1, int(n_equipos) + 1)]
     print("equipos es: ",equipos)
@@ -215,12 +216,12 @@ def crear():
             #print(salida)
             cursor.execute("""INSERT INTO torneo ("ID_torneo", "Nombre_torneo", "Nro_Categoria","Nro_equipos")
                             VALUES (nextval('torneo_id_seq'),%s, %s, %s)""",
-                           (nombre_torneo,3,n_equipos))
+                           (nombre_torneo,categoria,n_equipos))
             cursor.execute("SELECT lastval()")
             id_torneo = cursor.fetchone()[0]
             for equipo in equipos:
                 cursor.execute("""INSERT INTO equipo ("ID_equipo", "ID_categoria", "Nombre_equipo") VALUES (nextval('equipo_id_seq'),%s, %s)""",
-                           (3,equipo))
+                           (categoria,equipo))
                 cursor.execute("SELECT lastval()")
                 id_equipo = cursor.fetchone()[0]
                 cursor.execute("""INSERT INTO torneo_equipo ("ID_torneo", "ID_equipo") VALUES (%s, %s)""",

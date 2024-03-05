@@ -1,7 +1,7 @@
 {% extends 'nav.html'  %}
 
-
     {% block content %}
+
 <div class="agrupar">
   <div class="despliegue">
 
@@ -20,7 +20,7 @@
       <li ><a href="#"><i class="icono fa-solid fa-eye"></i>Visualizar Torneo</a>
         <ul>
           <li><a href="/stats">Tabla</a>
-          <li><a href="/mostrar_goles">Estadisticas</a>
+          <li><a href="/mostrar_goles" >Estadisticas</a>
         </ul>
       </li>
       <li ><a href="#"><i class="icono fa-solid fa-pen-to-square"></i>Editar Torneo</a>      
@@ -63,7 +63,7 @@
 function generarCampos() {
   var numEquipos = document.getElementById("numEquipos").value;
   var container = document.getElementById("equiposContainer");
-  container.innerHTML = ""; // Limpiar el contenedor antes de generar los campos
+  container.innerHTML = ""; 
 
   for (var i = 1; i <= numEquipos; i++) {
       var label = document.createElement("label");

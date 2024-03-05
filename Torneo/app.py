@@ -9,6 +9,8 @@ import os
 app=Flask(__name__,template_folder='templates')
 app.secret_key="torneo"
 
+idtorneo=1
+
 @app.route('/')
 def inicio():
 
@@ -19,9 +21,9 @@ def inicio():
 
 @app.route('/idtorneo',methods=['POST'])
 def inicio_segundo():
-
+    global idtorneo
     idtorneo=request.form['id_torneo']
-
+    
     try:
         connection=get_connection()
         with connection.cursor() as cursor:
@@ -41,7 +43,7 @@ def inicio_segundo():
         raise Exception(ex)
     
     print(partidos)
-    return render_template('menu.html',partidos=partidos)
+    return render_template('menu.html',partidos=partidos),idtorneo
 
 @app.route('/idjugador',methods=['POST'])
 def jugador():
@@ -57,10 +59,13 @@ def jugador():
             equipo=cursor.fetchone()
             print(equipo)
             if equipo[0]>0:
+
+                cursor.execute("""SELECT "ID_torneo" FROM torneo_equipo WHERE "ID_equipo" = %s""" , (id_equipo,))
+                torneo=cursor.fetchone()
                      
-                cursor.execute("""INSERT INTO jugador ("ID_jugador", "Nombre", "ID_equipo")
-                    VALUES (nextval('id_jugador_seq'),%s, %s)""",
-                           (jugador,id_equipo))
+                cursor.execute("""INSERT INTO jugador ("ID_jugador", "Nombre", "ID_equipo","ID_torneo")
+                    VALUES (nextval('id_jugador_seq'),%s, %s,%s)""",
+                           (jugador,id_equipo,torneo))
 
                 connection.commit()
 
@@ -113,25 +118,29 @@ def golesjugador():
 
 @app.route('/mostrar_goles')
 def mostrar_goles():
+    salida=None
+    global idtorneo
+    if idtorneo is not None:
+        try:
+            connection=get_connection()
 
-    try:
-        connection=get_connection()
+            with connection.cursor() as cursor:
 
-        with connection.cursor() as cursor:
-
-            cursor.execute("""SELECT j."Nombre",j."goles", e_equipo."Nombre_equipo"
+                cursor.execute("""SELECT j."Nombre",j."goles", e_equipo."Nombre_equipo"
                   FROM jugador j
                   JOIN equipo e_equipo ON j."ID_equipo" = e_equipo."ID_equipo"
+                  WHERE j."ID_torneo" = %s
                   GROUP BY j."ID_torneo", j."Nombre", j."goles",e_equipo."Nombre_equipo"
-                  ORDER BY j."goles" DESC""")
+                  ORDER BY j."goles" DESC""",(idtorneo,))
             
-            salida=cursor.fetchall()
-            print("AQUI ",salida)
-
-    except Exception as ex:
-        raise Exception(ex)
-
-    return render_template('goles.html',salida=salida)
+                salida=cursor.fetchall()
+      
+        except Exception as ex:
+            raise Exception(ex)
+    if salida is not None:
+        return render_template('goles.html',salida=salida)
+    else:
+        return render_template('menu.html')
 
 
 @app.route('/login_admin')
@@ -173,34 +182,42 @@ def cerrarsesion():
     session.clear()
     return redirect('/login_admin')
 
-
 @app.route('/stats')
 def stats():
-  
-    try:
-        connection=get_connection()
+    salida=None
+    global idtorneo
+    print("AQUI :",idtorneo)
+    
+    if idtorneo is not None:
+        try:
+            connection=get_connection()
 
-        with connection.cursor() as cursor:
+            with connection.cursor() as cursor:
 
-            cursor.execute("""SELECT te.*, e_equipo."Nombre_equipo"
+                cursor.execute("""SELECT te.*, e_equipo."Nombre_equipo"
                   FROM torneo_equipo te
                   JOIN equipo e_equipo ON te."ID_equipo" = e_equipo."ID_equipo"
+                  WHERE te."ID_torneo" = %s        
                   GROUP BY te."ID_torneo", te."ID_equipo",e_equipo."Nombre_equipo"
-                  ORDER BY te."Puntos" DESC""")
+                  ORDER BY te."Puntos" DESC""",(idtorneo,))
             
-            salida=cursor.fetchall()
-            print("AQUI ",salida)
+                salida=cursor.fetchall()
 
-    except Exception as ex:
-        raise Exception(ex)
+        except Exception as ex:
+            raise Exception(ex)
 
-    return render_template('stats.html',salida=salida)
-
+    if salida is not None:
+        return render_template('stats.html',salida=salida)
+    else:
+        return render_template('menu.html')
+    
 @app.route('/crear',methods=['POST'])
 def crear():
 
     n_equipos=request.form['numEquipos']
-    categoria=['nombrecategoria']
+    categoria=request.form['nombrecategoria']
+    print(categoria)
+    
     nombre_torneo=request.form['nombreTorneo']
     equipos = [request.form['equipo' + str(i)] for i in range(1, int(n_equipos) + 1)]
     print("equipos es: ",equipos)
@@ -211,9 +228,7 @@ def crear():
         connection=get_connection()
 
         with connection.cursor() as cursor:
-            #cursor.execute("SELECT * FROM equipo ")
-            #salida=cursor.fetchall()
-            #print(salida)
+
             cursor.execute("""INSERT INTO torneo ("ID_torneo", "Nombre_torneo", "Nro_Categoria","Nro_equipos")
                             VALUES (nextval('torneo_id_seq'),%s, %s, %s)""",
                            (nombre_torneo,categoria,n_equipos))
@@ -255,8 +270,6 @@ def editar():
     id_partido=request.form['id_partido']
     goles_local=request.form['goles_local']
     goles_visitante=request.form['goles_visitante']
-
-    print("AQUI ",goles_local)
 
     try:
         connection=get_connection()
@@ -459,14 +472,11 @@ def editar():
 
                     connection.commit()
 
-            
-
     except Exception as ex:
         raise Exception(ex)
 
 
     return render_template('menu.html')
-
 
 if __name__=='__main__':
 

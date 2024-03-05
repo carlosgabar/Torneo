@@ -68,15 +68,11 @@ body {
 
 .formularios {
   display: none;
-  flex-grow: 1; /* Permite que el formulario crezca para ocupar el espacio restante */
+  flex-grow: 1; 
 }
 
-/* Utilizar flexbox para alinear los elementos */
 .container {
   display: flex;
-
-
-
 }
 
 .agrupar{

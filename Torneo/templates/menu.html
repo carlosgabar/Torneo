@@ -45,7 +45,7 @@
     <input type="text" id="nombreTorneo" name="nombreTorneo" required>
 
     <label for="Categoria">Nro de Categoria</label>
-    <input type="number" id="nombrecategoria" name="nombrecategoria" required>
+    <input type="number" id="nombrecategoria" name="nombrecategoria" min="0" required>
 
     <label for="numEquipos">Número de Equipos:</label>
     <input type="number" id="numEquipos" name="numEquipos" min="4" max="16" required>
@@ -92,7 +92,7 @@ function generarCampos() {
     <form id="idtorneo" action="/idtorneo" method="post">
 
       <label for="id_torneo">ID del torneo</label>
-      <input type="number" id="id_torneo" name="id_torneo"  required>
+      <input type="number" id="id_torneo" name="id_torneo" min="0" required>
 
       <button class="boton" type="submit">Enviar</button>
   
@@ -103,13 +103,13 @@ function generarCampos() {
   <form id="editarform" action="/editar" method="post">
 
     <label for="id_partido">ID del partido</label>
-    <input type="number" id="id_partido" name="id_partido"  required>
+    <input type="number" id="id_partido" name="id_partido" min="0"  required>
   
     <label for="goles_local">Goles Local</label>
-    <input type="number" id="goles_local" name="goles_local" required>
+    <input type="number" id="goles_local" name="goles_local" min="0" required>
   
     <label for="goles_visitante">Goles visitante</label>
-    <input type="number" id="goles_visitante" name="goles_visitante" required>
+    <input type="number" id="goles_visitante" name="goles_visitante" min="0" required>
   
     <button class="boton" type="submit">Enviar</button>
   
@@ -150,7 +150,7 @@ function generarCampos() {
 
     <div class="arreglarid">
     <label for="id_equipo">ID del Equipo</label>
-    <input type="number" id="id_equipo" name="id_equipo"  required>
+    <input type="number" id="id_equipo" name="id_equipo" min="0"  required>
     </div>
 
     <label for="nombre_jugador">Nombre del jugador</label>
@@ -175,17 +175,17 @@ function generarCampos() {
 
     <div class="arreglaridgoles">
     <label for="id_equipo">ID Equipo</label>
-    <input type="number" id="id_equipo" name="id_equipo"  required>
+    <input type="number" id="id_equipo" name="id_equipo" min="0"  required>
     </div>
 
     <label for="id_jugador">ID Jugador</label>
-    <input type="number" id="id_jugador" name="id_jugador"  required>
+    <input type="number" id="id_jugador" name="id_jugador" min="0"  required>
 
     <label for="id_torneo">ID Torneo</label>
-    <input type="number" id="id_torneo" name="id_torneo"  required>
+    <input type="number" id="id_torneo" name="id_torneo" min="0"  required>
   
     <label for="goles">Goles</label>
-    <input type="number" id="goles" name="goles"  required>
+    <input type="number" id="goles" name="goles" min="0"  required>
    
     <button class="boton" type="submit">Enviar</button>
    </div>

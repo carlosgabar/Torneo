@@ -93,8 +93,11 @@ def golesjugador():
 
             cursor.execute("""SELECT COUNT(*) FROM equipo WHERE "ID_equipo" = %s""" , (id_equipo,))
             equipo=cursor.fetchone()
+
+            cursor.execute("""SELECT COUNT(*) FROM torneo WHERE "ID_torneo" = %s""" , (id_torneo,))
+            torneo=cursor.fetchone()
    
-            if jugador[0]>0 and equipo[0]>0:
+            if jugador[0]>0 and equipo[0]>0 and torneo[0]>0:
 
                 cursor.execute("""UPDATE jugador SET "ID_torneo" =%s
                          WHERE "ID_jugador" =%s """, (id_torneo,id_jugador)) 
@@ -106,7 +109,25 @@ def golesjugador():
                 golesjugador=goles_jugador[0]
                 actualizar_golesjugador=golesjugador+int(goles)
 
-                cursor.execute("""UPDATE jugador SET "goles" =%s WHERE "ID_torneo" =%s
+                cursor.execute("""SELECT "gfavor_equipo" FROM torneo_equipo WHERE "ID_equipo" =%s
+                          """, (id_equipo,))          
+                
+                goles_equipo=cursor.fetchone()
+                goles_equipo=goles_equipo[0]
+
+                cursor.execute("""SELECT "ID_equipo",SUM(goles)
+                  FROM jugador 
+                  WHERE "ID_equipo" = %s
+                  GROUP BY "ID_equipo"
+                  """,(id_equipo,))
+                
+                sum=cursor.fetchone()
+                sum_jugadores=sum[1]
+                print("LA SUMA ES ",sum_jugadores)
+                
+                if (sum_jugadores+int(goles))<=goles_equipo:
+
+                    cursor.execute("""UPDATE jugador SET "goles" =%s WHERE "ID_torneo" =%s
                          AND"ID_jugador" =%s """, (actualizar_golesjugador,id_torneo,id_jugador)) 
                 
                 connection.commit()
@@ -367,7 +388,7 @@ def editar():
                 cursor.execute("""UPDATE torneo_equipo SET "cantidadjugados" = %s WHERE "ID_equipo" = %s AND "ID_torneo"=%s """,
                             (actualizar_cantidad_local,id_local,id_torneo)) 
 
-                #ACTUALIZAR PARTIDOS JUGADOR, PARA EL EQUIPO VISITANTE
+                #ACTUALIZAR PARTIDOS JUGADOS, PARA EL EQUIPO VISITANTE
 
                 cursor.execute("""SELECT "cantidadjugados" FROM torneo_equipo WHERE "ID_equipo" = %s
                             AND "ID_torneo"=%s """ ,
